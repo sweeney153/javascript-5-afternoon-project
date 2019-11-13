@@ -147,16 +147,16 @@ var module = (function() {
     }
 
     return {
-      publicMethod: function(){
-        privateMethod();
+      publicMethod(){
+        return privateMethod()
       }
     }
-    publicMethod();
+    // publicMethod();
 }());
 // publicMethod();
 // Anything that is being returned is made public and can be invoked from
 // outside our lexical scope
-
+// module.publicMethod();
 
 
 ////////// PROBLEM 7 //////////
@@ -203,11 +203,12 @@ function secretNumber() {
 */
 
 function timeOutCounter() {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 0; i <= 5; i++) {
+    function memoryClosure(i){
     setTimeout(function() {
       console.log(i);
-    }, i * 1000);
-  
+    }, i * 1000);}
+  memoryClosure(i)
   }
 }
 timeOutCounter();
