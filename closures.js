@@ -117,15 +117,15 @@ counter = counterFactory(10);
 
 function motivation( firstname, lastname ) {
   var welcomeText = "You're doing awesome, keep it up";
+    function message(){
+      return `${welcomeText} ${firstname} ${lastname}.`;
+    }  
 
-  // code message function here.
-
-  //Uncommment this to return the value of your message function
-  //return message;
+  // Uncommment this to return the value of your message function
+  return message;
 }
 
 var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-
 
 
 ////////// PROBLEM 6 //////////
@@ -144,14 +144,18 @@ var module = (function() {
 
   function privateMethod(){
     return "Hi, I'm " + person.name + ", age " + person.age + " from " + person.location;
-  }
+    }
 
-  // Anything that is being returned is made public and can be invoked from
-  // outside our lexical scope
-  return {
-    // Code here.
-  };
-})();
+    return {
+      publicMethod: function(){
+        privateMethod();
+      }
+    }
+    publicMethod();
+}());
+// publicMethod();
+// Anything that is being returned is made public and can be invoked from
+// outside our lexical scope
 
 
 
@@ -168,10 +172,16 @@ function secretNumber() {
   var secret = 143;
 
   return {
-    // Code here
-  };
+    addToSecret: function(num){
+      secret += num;
+      return secret;
+    },
+    takeAwayFromSecret: function(num){
+      secret -= num;
+      return secret;
+    }
+  }
 }
-
 
 
 ////////// PROBLEM 8 //////////
@@ -193,10 +203,11 @@ function secretNumber() {
 */
 
 function timeOutCounter() {
-  for (var i = 0; i <= 5; i++) {
+  for (let i = 1; i <= 5; i++) {
     setTimeout(function() {
       console.log(i);
     }, i * 1000);
+  
   }
 }
 timeOutCounter();
